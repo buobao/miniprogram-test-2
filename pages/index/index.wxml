@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
+<view class="search">  
+  <view class="search-bar">  
+    <view class="search-wrap">  
+        <icon type="search" size="16" class="icon-search" />  
+        <input type="text" placeholder="请输入搜索内容" class="search-input" name="searchKeyword" bindinput="bindKeywordInput" value="{{searchKeyword}}" />  
+    </view>  
+    <view class="search-cancel" bindtap="keywordSearch">搜索</view>  
+  </view>  
+  <view class="search-result">  
+    <scroll-view scroll-y="true" bindscrolltolower="searchScrollLower">  
+      <view class="result-item" wx:for="{{searchSongList}}" wx:key="unique"  data-data="{{item}}" >  
+
+        <image style='width:40%;height:200rpx' src='{{item.fxPicS}}'></image>
+        <!-- <view class="icon{{item.fxHot=='0' ? ' nocopyright' : ''}}"></view>   -->
+        <view style='width:60%;height:200rpx;display:flex;flex-direction:column;margin-left:15rpx'>
+          <text class="title">{{item.fxTitle}}</text>
+          <text class="subtitle">{{item.fxTag}}</text>
+          <text class="subtitle">{{formatTime(item.formatNumber)}}</text>
+        </view>
+        <!-- <view class="subtitle">  
+          <text wx:for="{{item.fxTag}}" wx:key="unique">{{item.fxCreatTime}}</text>  
+        </view>   -->
+      </view>  
+
+      <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>  
+    </scroll-view>    
+  </view>  
+</view>
