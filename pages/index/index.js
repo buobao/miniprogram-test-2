@@ -60,7 +60,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchKeyword: '',  //需要搜索的字符  
+    searchKeyword: '二手',  //需要搜索的字符  
     searchPageNum: 0,   // 设置加载的第几次，默认是第一次 
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
     searchLoadingComplete: false  //“没有数据”的变量，默认false，隐藏
@@ -86,11 +86,20 @@ Page({
       console.log(data)
       //判断是否有数据，有则取数据  
       if (data.status == 1) {
-        let searchList = [];
+        let leftList = [];
+        let rightList = [];
         //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加  
-        that.data.isFromSearch ? searchList = data.data : searchList = that.data.searchSongList.concat(data.data)
+        // that.data.isFromSearch ? searchList = data.data : searchList = that.data.searchSongList.concat(data.data);
+        for (var i=0;i<data.data.length;i+=2) {
+          leftList.push(data.data[i]);
+          if (i+1<data.data.length) {
+            rightList.push(data.data[i+1]);
+          }
+        }
+
         that.setData({
-          searchSongList: searchList, //获取数据数组  
+          sourceLeftList: leftList, //获取数据数组  
+          sourceRightList: rightList, //获取数据数组  
           searchLoading: true   //把"上拉加载"的变量设为false，显示  
         });
         //没有数据了，把“没有数据”显示，把“上拉加载”隐藏  
@@ -106,7 +115,8 @@ Page({
   keywordSearch: function (e) {
     this.setData({
       searchPageNum: 1,   //第一次加载，设置1  
-      searchSongList: [],  //放置返回数据的数组,设为空  
+      sourceLeftList: [],  //放置返回数据的数组,设为空  
+      sourceRightList: [],  //放置返回数据的数组,设为空 
       isFromSearch: true,  //第一次加载，设置true  
       searchLoading: true,  //把"上拉加载"的变量设为true，显示  
       searchLoadingComplete: false //把“没有数据”设为false，隐藏  
@@ -135,7 +145,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    this.keywordSearch();
   },
 
   /**

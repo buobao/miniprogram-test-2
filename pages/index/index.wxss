@@ -54,23 +54,32 @@ page{
   right: 0;  
   top: 0;  
 }  
-.result-item{  
+.result-item {    
   position: relative;  
-  display: flex;  
-  flex-direction: row;  
-  padding: 5rpx;  
-  overflow: hidden;  
-  border-bottom: 2rpx solid #e5e5e5;  
-}  
+  /* flex-direction: column;   */
+  display: inline-block;
+  vertical-align: top;
+  height: 400rpx;  
+  width:95%;
+  overflow: hidden;
+  margin: 8rpx;  
+  /* border-bottom: 2rpx solid #e5e5e5;  */
+  /* float: left; */
+  /* height: 220px;   */
+  border-radius: 5px;  
+  background: #fff;  
+  -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3);  
+  box-shadow: 3px 3px 7px rgba(0,0,0,0.3);   
+} 
   
-.result-item .media{  
+/* .result-item .media{  
   position: absolute;  
   left: 16rpx;  
   top: 16rpx;  
   width: 80rpx;  
   height: 80rpx;  
   border-radius: 999rpx;  
-}  
+}   */
 .result-item .title,  
 .result-item .subtitle{  
   overflow: hidden;  
@@ -81,10 +90,11 @@ page{
 .result-item .title{  
   margin-bottom: 4rpx;  
   color: #000;  
+  font-size: 26rpx;
 }  
 .result-item .subtitle{  
   color: #808080;  
-  font-size: 24rpx;  
+  font-size: 21rpx;  
 }  
 .result-item:first-child .subtitle text{  
   margin-right: 20rpx;  
